@@ -15,7 +15,8 @@ void menu()
     cout<<"7. Searsh for a sales value\n";
     cout<<"8. Sort sales\n";
     cout<<"9. Save data to file\n";
-    cout<<"10. Exit program\n\n"; 
+    cout<<"10. help\n";
+    cout<<"11. Exit program\n\n"; 
 }
 
 int main()
@@ -56,6 +57,9 @@ int main()
                 cout<<"\nYou chose to save data to file.\n\n";
                 break;
             case 10:
+                
+                break;
+            case 11:
             
                 cout<<"\nExiting program... Goodbye\n\n";
                 break;
