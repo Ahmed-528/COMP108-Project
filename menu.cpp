@@ -68,7 +68,7 @@ int main()
                 break;
         }
     }
-    while(choice != 10);
+    while(choice != 11);
     
     
     return 0;
