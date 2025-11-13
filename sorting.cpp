@@ -1,24 +1,45 @@
 #include <iostream>
 using namespace std;
 
-void sortArray(int arr[], int n)
+const int MAX_SALES = 7;
+double sales[MAX_SALES];
+double sortsales[MAX_SALES];
+string days[MAX_SALES] = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
+string sortDays[MAX_SALES];
+
+void sortArray()
 {
-    int temp, i, j;
-    for(i = 0; i < n-1; i++)
+    for (int i = 0; i < MAX_SALES; ++i)
     {
-        for(j = 0; j < n-i-1; j++)
+        sortsales[i] = sales[i];
+    }
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sortDays[i] = days[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if(arr[j] > arr[j+1])
+            if (sortsales[j] > sortsales[j+1])
             {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+                double tempVal = sortsales[j];
+                sortsales[j] = sortsales[j+1];
+                sortsales[j+1] = tempVal;
+
+               
+                string tempDay = sortDays[j];
+                sortDays[j] = sortDays[j+1];
+                sortDays[j+1] = tempDay;
             }
         }
     }
 
-    for(i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }   
+     cout << "Sorted sales (ascending):\n";
+    for (int i = 0; i < MAX_SALES; ++i) {
+        cout << sortDays[i] << "\t|   " << sortsales[i] << "\n";
+    }
+    cout << "\n";
+
 }
