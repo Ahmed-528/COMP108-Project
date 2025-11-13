@@ -3,7 +3,9 @@ using namespace std;
 
 const int MAX_SALES = 7;
 double sales[MAX_SALES];
+double sortsales[MAX_SALES];
 string days[MAX_SALES] = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
+string sortDays[MAX_SALES];
 
 void menu()
 {
@@ -37,27 +39,50 @@ void inputSales()
     cout << "\nSales data stored in the array successfully.\n\n\n";
 }
 
-int find_max_sales(double sales[]) {
-	int max= 0; // Assume the first day has the highest sales.
-	
-	for(int i=1; i< MAX_SALES ;i++) {
-		if(sales[i]>sales[max]) {
-			max= i; //  Save the index of the highest sales day.
-		}
-	}
-	  return max; // Return the index of the highest day.
+void displayArray()
+{
+    int i;
+    for (i = 0; i < MAX_SALES; i++)
+    {
+        cout << days[i] << "\t|   " << sales[i] << "\n";
+    }
 }
 
-int search(string search_day)
+void sortArray()
 {
-    for (int i = 0; i < MAX_SALES; i++)
+    for (int i = 0; i < MAX_SALES; ++i)
     {
-        if (search_day == days[i])
+        sortsales[i] = sales[i];
+    }
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sortDays[i] = days[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            return i;
+            if (sortsales[j] > sortsales[j+1])
+            {
+                double tempVal = sortsales[j];
+                sortsales[j] = sortsales[j+1];
+                sortsales[j+1] = tempVal;
+
+               
+                string tempDay = sortDays[j];
+                sortDays[j] = sortDays[j+1];
+                sortDays[j+1] = tempDay;
+            }
         }
     }
-    return -1;
+
+     cout << "Sorted sales (ascending):\n";
+    for (int i = 0; i < MAX_SALES; ++i) {
+        cout << sortDays[i] << "\t|   " << sortsales[i] << "\n";
+    }
+    cout << "\n";
+
 }
 
 int main()
@@ -76,6 +101,7 @@ int main()
             break;
         case 2:
             cout << "\nYou chose to display sales.\n\n";
+            displayArray();
             break;
         case 3:
             cout << "\nYou chose to calculate total sales.\n\n";
@@ -91,10 +117,11 @@ int main()
             break;
         case 7:
             cout << "\nYou chose to searsh for a day.\n\n";
-            
+
             break;
         case 8:
             cout << "\nYou chose to sort sales.\n\n";
+            sortArray();
             break;
         case 9:
             cout << "\nYou chose to save data to file.\n\n";
