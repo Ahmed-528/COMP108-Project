@@ -6,7 +6,7 @@ double sales[MAX_SALES];
 
 void menu()
 {
-	cout << "\033[94m";
+    cout << "\033[94m";
     cout << "===================================" << endl;
     cout << "\t Sales Tracket Menu" << endl;
     cout << "===================================" << endl;
@@ -36,6 +36,13 @@ void inputSales()
     cout << "\nSales data stored in the array successfully.\n\n\n";
 }
 
+int search(string search_day) {
+	for(int i= 0 ; i< MAX_SALES ;i++) {
+		if(search_day==days[i]) {
+			return i;
+		}
+	}
+}
 
 int main()
 {
