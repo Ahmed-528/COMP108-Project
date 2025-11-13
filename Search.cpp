@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+const int SIZE = 7; 
+string days[SIZE] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 
 int search(string search_day); // Function prototybe.
 
@@ -12,4 +14,5 @@ int search(string search_day) {
 		}
 	}
 }
+
 
