@@ -5,7 +5,7 @@ void menu()
 {
     cout<<"==================================="<<endl;
     cout<<"\t Sales Tracket Menu"<<endl;
-    cout<<"==================================="<<endl;
+    cout<<"==================================="<<endl<<endl;
     cout<<"1. Enter daily sales data\n";
     cout<<"2. Display all sales\n";
     cout<<"3. Calculate total sales\n";
