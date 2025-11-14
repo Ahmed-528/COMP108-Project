@@ -7,7 +7,7 @@ double sortsales[MAX_SALES];
 string days[MAX_SALES] = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
 string sortDays[MAX_SALES];
 
-void menu()
+void menu() //This function displays the menu.
 {
     cout << "\033[94m";
     cout << "===================================" << endl;
@@ -22,12 +22,12 @@ void menu()
     cout << "7. Search for a day\n";
     cout << "8. Sort sales\n";
     cout << "9. Save data to file\n";
-    cout << "10. help\n";
+    cout << "10. Help\n";
     cout << "11. Exit program\n\n";
     cout << "\033[0m";
 }
 
-void inputSales()
+void inputSales() //This function requires the user to add values.
 {
 
     for (int i = 0; i < MAX_SALES; i++)
@@ -39,7 +39,7 @@ void inputSales()
     cout << "\nSales data stored in the array successfully.\n\n\n";
 }
 
-void displayArray()
+void displayArray() //This function displays the input values.
 {
     int i;
     for (i = 0; i < MAX_SALES; i++)
@@ -48,7 +48,7 @@ void displayArray()
     }
 }
 
-double sum() // This function is to calculate the total sales of the week.
+double sum() //This function is to calculate the total sales of the week.
 { 
     double sum = 0;
 
@@ -57,12 +57,12 @@ double sum() // This function is to calculate the total sales of the week.
         sum += sales[i];
     }
 
-    cout << "\033[33m\nThe total of the sale for these days is: \033[0m" << sum << "\n\n\n";
+    cout << "\033[33m\nThe total of the sales for these days is: \033[0m" << sum << "\n\n\n";
 
     return sum;
 }
 
-double average() // This function is to calculate the average of the week.
+double average() //This function is to calculate the average of the week.
 { 
 
     double sum(0), avg;
@@ -74,12 +74,12 @@ double average() // This function is to calculate the average of the week.
     }
     avg = sum / MAX_SALES;
 
-    cout << "\n\033[33mThe average of the sale is:\033[0m " << avg << "\n\n\n";
+    cout << "\n\033[33mThe average of the sales is:\033[0m " << avg << "\n\n\n";
 
     return avg;
 }
 
-int find_max_sales()
+int find_max_sales() //This function finds the highest sales day.
 {
     int max = 0; // Assume the first day has the highest sales.
 
@@ -96,7 +96,7 @@ int find_max_sales()
     return max; // Return the index of the highest day.
 }
 
-int find_lowest_sales()
+int find_lowest_sales() //This function finds the lowest sales day.
 {
     int lowest = 0; // Assume the first day has the lowest sales.
 
@@ -113,7 +113,7 @@ int find_lowest_sales()
     return lowest; // Return the index of the lowest day.
 }
 
-int search_day()
+int search_day() //This function finds the day that the user is searching for.
 {
 	int day_number;
 	cout << "Enter day number (1 - 7): ";
@@ -131,7 +131,7 @@ int search_day()
 	return index;
 }
 
-void sortArray()
+void sortArray() //This function sorts sales in ascending order.
 {
     for (int i = 0; i < MAX_SALES; ++i)
     {
@@ -207,7 +207,7 @@ int main()
             find_lowest_sales();
             break;
         case 7:
-            cout << "\nYou chose to searsh for a day.\n\n";
+            cout << "\nYou chose to search for a day.\n\n";
             search_day();
             break;
         case 8:
