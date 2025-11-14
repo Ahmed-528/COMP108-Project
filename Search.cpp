@@ -1,18 +1,24 @@
 #include <iostream>
 using namespace std;
-const int SIZE = 7; 
+const int SIZE = 7;
 string days[SIZE] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 
-int search(string search_day); // Function prototybe.
+int search_day();
 
-// Searches for a day's name in the 'days' array.
-// If found, returns the index of the day.
-int search(string search_day) {
-	for(int i= 0;i<SIZE;i++) {
-		if(search_day==days[i]) {
-			return i;
-		}
+int search_day()
+{
+	int day_number;
+	cout << "Enter day number (1 - 7): ";
+	cin >> day_number;
+	if (day_number < 1 || day_number > MAX_SALES)
+	{
+		cout << "Invalid day number!\n";
+		return -1;
 	}
+
+	int index = day_number - 1;
+
+	cout << days[index] << " sales = " << sales[index] << endl;
+
+	return index;
 }
-
-
