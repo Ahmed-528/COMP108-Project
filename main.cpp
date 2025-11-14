@@ -48,6 +48,89 @@ void displayArray()
     }
 }
 
+double sum() // This function is to calculate the total sales of the week.
+{ 
+    double sum = 0;
+
+    for (int i = 0; i < MAX_SALES; ++i)
+    { // We use a for loop to go through each array element and calculate the sum.
+        sum += sales[i];
+    }
+
+    cout << "\033[33m\nThe total of the sale for these days is: \033[0m" << sum << "\n\n\n";
+
+    return sum;
+}
+
+double average() // This function is to calculate the average of the week.
+{ 
+
+    double sum(0), avg;
+
+    for (int i = 0; i < MAX_SALES; ++i)
+    { // We use a for loop to go through each array element and calculate the sum.
+
+        sum += sales[i];
+    }
+    avg = sum / MAX_SALES;
+
+    cout << "\n\033[33mThe average of the sale is:\033[0m " << avg << "\n\n\n";
+
+    return avg;
+}
+
+int find_max_sales()
+{
+    int max = 0; // Assume the first day has the highest sales.
+
+    for (int i = 1; i < MAX_SALES; i++)
+    {
+        if (sales[i] > sales[max])
+        {
+            max = i; // Save the index of the highest sales day.
+        }
+    }
+
+    cout << "\033[32mHighest sales is on Day " << (max + 1) << " with amount: " << sales[max] << "\033[32m\n\n\n";
+
+    return max; // Return the index of the highest day.
+}
+
+int find_lowest_sales()
+{
+    int lowest = 0; // Assume the first day has the lowest sales.
+
+    for (int i = 1; i < MAX_SALES; i++)
+    {
+        if (sales[i] < sales[lowest])
+        {
+            lowest = i; // Save the index of the lowest sales day.
+        }
+    }
+
+    cout << "\033[31mLowest sales is on Day " << (lowest + 1) << " with amount: " << sales[lowest] << "\033[32m\n\n\n";
+
+    return lowest; // Return the index of the lowest day.
+}
+
+int search_day()
+{
+	int day_number;
+	cout << "Enter day number (1 - 7): ";
+	cin >> day_number;
+	if (day_number < 1 || day_number > MAX_SALES)
+	{
+		cout << "\nInvalid day number!\n\n";
+		return -1;
+	}
+
+	int index = day_number - 1;
+
+	cout <<"\n"<< days[index] << " sales = " << sales[index] << "\n\n";
+
+	return index;
+}
+
 void sortArray()
 {
     for (int i = 0; i < MAX_SALES; ++i)
@@ -85,9 +168,12 @@ void sortArray()
 
 }
 
+
 int main()
 {
     int choice;
+    double avg, total;
+    
     do
     {
         menu();
@@ -102,22 +188,27 @@ int main()
         case 2:
             cout << "\nYou chose to display sales.\n\n";
             displayArray();
+            cout<<"\n\n";
             break;
         case 3:
             cout << "\nYou chose to calculate total sales.\n\n";
+            total = sum();
             break;
         case 4:
             cout << "\nYou chose to calculate average sales.\n\n";
+            avg = average();
             break;
         case 5:
             cout << "\nYou chose to show the highest sales day.\n\n";
+            find_max_sales();
             break;
         case 6:
             cout << "\nYou chose to show the lowest sales day.\n\n";
+            find_lowest_sales();
             break;
         case 7:
             cout << "\nYou chose to searsh for a day.\n\n";
-
+            search_day();
             break;
         case 8:
             cout << "\nYou chose to sort sales.\n\n";
