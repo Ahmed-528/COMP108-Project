@@ -183,7 +183,7 @@ void showHelp()
     cout<<"5. Show highest sales day - Find the day with the most sales\n";
     cout<<"6. Show lowest sales day - Find the day with the least sales\n";
     cout<<"7. Search for a sales value - Look for a specific sales amount\n";
-    cout<<"8. Sort sales - Arrange sales data in order (ascending/descending)\n";
+    cout<<"8. Sort sales - Arrange sales data in order ascending\n";
     cout<<"9. Save data to file - Store your sales data in a file\n";
     cout<<"10. Help - Show this help information\n";
     cout<<"11. Exit program - Close the program\n\n";
