@@ -29,6 +29,7 @@ struct DailySales
 };
 
 DailySales salesData[MAX_SALES];
+DailySales sortedSalesData[MAX_SALES];
 
 void setupData()
 {
@@ -54,7 +55,7 @@ void menu() // This function displays the menu.
     cout << "7. Search for a day\n";
     cout << "8. Sort sales\n";
     cout << "9. Save data to file\n";
-    cout << "10. Reset all sales";
+    cout << "10. Reset all sales\n";
     cout << "11. Help\n";
     cout << "12. Exit program\n\n";
     cout << "\033[0m";
@@ -81,7 +82,7 @@ void displayArray() // This function displays the input values.
     }
 }
 
-double sum() // This function is to calculate the total sales of the week.
+double sum( int count ) // This function is to calculate the total sales of the week.
 {
     double sum = 0;
 
@@ -164,16 +165,20 @@ int search_day() // This function finds the day that the user is searching for.
 
 void sortArray() // This function sorts sales in ascending order.
 {
+    for(int i=0 ; i<MAX_SALES ; i++)
+    {
+        sortedSalesData[i] = salesData[i];
+    }
 
     for (int i = 0; i < MAX_SALES - 1; ++i)
     {
         for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if (salesData[j].sales > salesData[j + 1].sales)
+            if (sortedSalesData[j].sales > sortedSalesData[j + 1].sales)
             {
-                DailySales temp = salesData[j];
-                salesData[j] = salesData[j + 1];
-                salesData[j + 1] = temp;
+                DailySales temp = sortedSalesData[j];
+                sortedSalesData[j] = sortedSalesData[j + 1];
+                sortedSalesData[j + 1] = temp;
             }
         }
     }
@@ -181,7 +186,7 @@ void sortArray() // This function sorts sales in ascending order.
     cout << "Sorted sales (ascending):\n";
     for (int i = 0; i < MAX_SALES; ++i)
     {
-        cout << salesData[i].dayName << "\t|   " << salesData[i].sales << "\n";
+        cout << sortedSalesData[i].dayName << "\t|   " << sortedSalesData[i].sales << "\n";
     }
     cout << "\n";
 }
@@ -245,7 +250,7 @@ int main()
             break;
         case 3:
             cout << "\nYou chose to calculate total sales.\n\n";
-            total = sum();
+            total = sum(MAX_SALES);
             break;
         case 4:
             cout << "\nYou chose to calculate average sales.\n\n";
