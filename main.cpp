@@ -71,7 +71,7 @@ double sum() //This function is to calculate the total sales of the week.
     double sum = 0;
 
     for (int i = 0; i < MAX_SALES; ++i)
-    { // We use a for loop to go through each array element and calculate the sum.
+    { 
         sum += sales[i];
     }
 
@@ -86,7 +86,7 @@ double average() //This function is to calculate the average of the week.
     double sum(0), avg;
 
     for (int i = 0; i < MAX_SALES; ++i)
-    { // We use a for loop to go through each array element and calculate the sum.
+    { 
 
         sum += sales[i];
     }
