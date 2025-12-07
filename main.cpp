@@ -29,7 +29,8 @@ struct DailySales
 };
 
 DailySales salesData[MAX_SALES];
-DailySales sortedSalesData[MAX_SALES];
+DailySales ascendingSalesData[MAX_SALES];
+DailySales descendingSalesData[MAX_SALES];
 
 void setupData()
 {
@@ -163,22 +164,22 @@ int search_day() // This function finds the day that the user is searching for.
     return index;
 }
 
-void sortArray() // This function sorts sales in ascending order.
+void sortAscending() // This function sorts sales in ascending order.
 {
     for(int i=0 ; i<MAX_SALES ; i++)
     {
-        sortedSalesData[i] = salesData[i];
+         ascendingSalesData[i] = salesData[i];
     }
 
     for (int i = 0; i < MAX_SALES - 1; ++i)
     {
         for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if (sortedSalesData[j].sales > sortedSalesData[j + 1].sales)
+            if ( ascendingSalesData[j].sales >  ascendingSalesData[j + 1].sales)
             {
-                DailySales temp = sortedSalesData[j];
-                sortedSalesData[j] = sortedSalesData[j + 1];
-                sortedSalesData[j + 1] = temp;
+                DailySales temp =  ascendingSalesData[j];
+                 ascendingSalesData[j] =  ascendingSalesData[j + 1];
+                 ascendingSalesData[j + 1] = temp;
             }
         }
     }
@@ -186,7 +187,7 @@ void sortArray() // This function sorts sales in ascending order.
     cout << "Sorted sales (ascending):\n";
     for (int i = 0; i < MAX_SALES; ++i)
     {
-        cout << sortedSalesData[i].dayName << "\t|   " << sortedSalesData[i].sales << "\n";
+        cout <<  ascendingSalesData[i].dayName << "\t|   " <<  ascendingSalesData[i].sales << "\n";
     }
     cout << "\n";
 }
@@ -270,7 +271,7 @@ int main()
             break;
         case 8:
             cout << "\nYou chose to sort sales.\n\n";
-            sortArray();
+            sortAscending();
             break;
         case 9:
             cout << "\nYou chose to save data to file.\n\n";
