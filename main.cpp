@@ -41,7 +41,7 @@ void setupData()
     }
 }
 
-void menu() 
+void menu()
 {
     cout << "\033[94m";
     cout << "===================================" << endl;
@@ -51,18 +51,19 @@ void menu()
     cout << "2. Display all sales\n";
     cout << "3. Calculate total sales\n";
     cout << "4. Calculate average sales\n";
-    cout << "5. Show highest sales day\n";
-    cout << "6. Show lowest sales day\n";
-    cout << "7. Search for a day\n";
-    cout << "8. Sort sales\n";
+    cout << "5. Show maximum or minimum sales day\n";
+    cout << "6. Search data (By Day / By sales)\n";
+    cout << "7. Sort sales\n";
+    cout << "8. Update day sales\n";
     cout << "9. Save data to file\n";
-    cout << "10. Reset all sales\n";
-    cout << "11. Help\n";
-    cout << "12. Exit program\n\n";
+    cout << "10. Convert sales to USD\n";
+    cout << "11. Reset all sales\n";
+    cout << "12. Help\n";
+    cout << "13. Exit program\n\n";
     cout << "\033[0m";
 }
 
-void inputSales() 
+void inputSales()
 {
 
     for (int i = 0; i < MAX_SALES; i++)
@@ -74,7 +75,7 @@ void inputSales()
     cout << "\nSales data stored in the array successfully.\n\n\n";
 }
 
-void displayArray() 
+void displayArray()
 {
     int i;
     for (i = 0; i < MAX_SALES; i++)
@@ -83,7 +84,7 @@ void displayArray()
     }
 }
 
-double sum( int count ) 
+double sum(int count)
 {
     double sum = 0;
 
@@ -97,7 +98,7 @@ double sum( int count )
     return sum;
 }
 
-void average(double &avg) 
+void average(double &avg)
 {
 
     double sum = 0;
@@ -111,7 +112,7 @@ void average(double &avg)
     cout << "\n\033[33mThe average of the sales is:\033[0m " << avg << "\n\n\n";
 }
 
-int find_max_sales() 
+int find_max_sales()
 {
     int maxIndex = 0;
 
@@ -128,7 +129,7 @@ int find_max_sales()
     return maxIndex;
 }
 
-int find_lowest_sales() 
+int find_lowest_sales()
 {
     int lowestIndex = 0;
 
@@ -145,7 +146,7 @@ int find_lowest_sales()
     return lowestIndex;
 }
 
-int search_day() 
+int search_day()
 {
     int day_number;
     cout << "Enter day number (1 - 7): ";
@@ -164,22 +165,46 @@ int search_day()
     return index;
 }
 
-void sortAscending() 
-{
-    for(int i=0 ; i<MAX_SALES ; i++)
+void SearchByValue()
+{ // This function searches for a sales value in the sales array
+
+    double value;
+
+    cout << "which sales value do you want to search for? ";
+    cin >> value;
+
+    bool found = false; // A boolean variable to keep track if the value was found or not
+
+    for (int i = 0; i < MAX_SALES; ++i)
+    { // We use the loop to search through the sales array unitl it matches the value
+        if (salesData[i].sales == value)
+        {
+            cout << "\nValue " << value << " found on day " << (i + 1) << endl;
+            found = true;
+        }
+    }
+    if (!found)
     {
-         ascendingSalesData[i] = salesData[i];
+        cout << "\nValue " << value << " was NOT found in any day.\n";
+    }
+}
+
+void sortAscending()
+{
+    for (int i = 0; i < MAX_SALES; i++)
+    {
+        ascendingSalesData[i] = salesData[i];
     }
 
     for (int i = 0; i < MAX_SALES - 1; ++i)
     {
         for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if ( ascendingSalesData[j].sales >  ascendingSalesData[j + 1].sales)
+            if (ascendingSalesData[j].sales > ascendingSalesData[j + 1].sales)
             {
-                DailySales temp =  ascendingSalesData[j];
-                 ascendingSalesData[j] =  ascendingSalesData[j + 1];
-                 ascendingSalesData[j + 1] = temp;
+                DailySales temp = ascendingSalesData[j];
+                ascendingSalesData[j] = ascendingSalesData[j + 1];
+                ascendingSalesData[j + 1] = temp;
             }
         }
     }
@@ -187,7 +212,7 @@ void sortAscending()
     cout << "Sorted sales (ascending):\n";
     for (int i = 0; i < MAX_SALES; ++i)
     {
-        cout <<  ascendingSalesData[i].dayName << "\t|   " <<  ascendingSalesData[i].sales << "\n";
+        cout << ascendingSalesData[i].dayName << "\t|   " << ascendingSalesData[i].sales << "\n";
     }
     cout << "\n";
 }
@@ -228,10 +253,10 @@ void resetAllSales(DailySales *salesPtr)
 
 int updateDaySales()
 {
-   int day_number;
-   cout << "Enter the number of the day to update (1 - "<<MAX_SALES<<"): "; 
-   cin >> day_number;
-   
+    int day_number;
+    cout << "Enter the number of the day to update (1 - " << MAX_SALES << "): ";
+    cin >> day_number;
+
     if (day_number < 1 || day_number > MAX_SALES)
     {
         cout << "\nInvalid day number!\n\n";
@@ -240,13 +265,11 @@ int updateDaySales()
 
     int index = day_number - 1;
 
-    cout << "The old sales for "<< salesData[index].dayName<< " is: "<< salesData[index].sales<<endl;
+    cout << "The old sales for " << salesData[index].dayName << " is: " << salesData[index].sales << endl;
     cout << "Enter the NEW sales: ";
     cin >> salesData[index].sales;
-    
+
     return 1;
-
-
 }
 
 int main()
@@ -281,12 +304,31 @@ int main()
             average(avg);
             break;
         case 5:
-            cout << "\nYou chose to show the highest sales day.\n\n";
-            find_max_sales();
+            cout << "\nYou chose to show maximum or minimum sales day.\n\n";
+            cout << "Enter 1 for Highest sales Day or 2 for Lowest Sales Day: ";
+            while (true)
+            {
+                cin >> choice;
+                if (choice == 1)
+                {
+                    find_max_sales();
+                    break;
+                }
+                else if (choice == 2)
+                {
+                    find_lowest_sales();
+                    break;
+                }
+                else
+                {
+                    cout << "Invalid selection. Please choose 1 or 2 and try again.\n";
+                }
+            }
+
             break;
         case 6:
             cout << "\nYou chose to show the lowest sales day.\n\n";
-            find_lowest_sales();
+
             break;
         case 7:
             cout << "\nYou chose to search for a day.\n\n";
@@ -300,21 +342,25 @@ int main()
             cout << "\nYou chose to save data to file.\n\n";
             break;
         case 10:
+            cout << "\nYou chose to convert sales to USD";
+
+            break;
+        case 11:
             cout << "\nYou chose to reset all sales.\n";
             resetAllSales(salesData);
             break;
-        case 11:
+        case 12:
             showHelp();
             break;
-        case 12:
-            
+        case 13:
+
             cout << "\nExiting program... Goodbye\n\n";
             break;
         default:
             cout << "\nInvalid choice, please try again.\n\n";
             break;
         }
-    } while (choice != 12);
+    } while (choice != 13);
 
     return 0;
 }
