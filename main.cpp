@@ -231,6 +231,25 @@ void descendingSort()
 
 }
 
+void SortingOptions()
+{
+
+int numberChoice;
+
+  cout<<"Enter 1 for ascending sort or 2 for descending sort: \n";
+  cin>>numberChoice;
+
+  if(numberChoice == 1){
+    ascendingSort();
+  }
+  else if(numberChoice == 2){
+    descendingSort();
+  }
+  else
+    cout<<"The entered value is not acceptable.\n";
+ 
+}
+
 void showHelp()
 {
     cout << "\n===================================" << endl;
@@ -246,7 +265,7 @@ void showHelp()
     cout << "5. Show highest sales day - Find the day with the most sales\n";
     cout << "6. Show lowest sales day - Find the day with the least sales\n";
     cout << "7. Search for a sales value - Look for a specific sales amount\n";
-    cout << "8. Sort sales - Arrange sales data in order ascending\n";
+    cout << "8. Sales sorting - Arrange sales data in ascending order when 1 is selected and in descending order when 2 is selected\n";
     cout << "9. Save data to file - Store your sales data in a file\n";
     cout << "10. Help - Show this help information\n";
     cout << "11. Exit program - Close the program\n\n";
@@ -333,7 +352,7 @@ int main()
             break;
         case 8:
             cout << "\nYou chose to sort sales.\n\n";
-            ascendingSort();
+            SortingOptions();
             break;
         case 9:
             cout << "\nYou chose to save data to file.\n\n";
