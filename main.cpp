@@ -165,6 +165,7 @@ int search_day()
     return index;
 }
 
+<<<<<<< HEAD
 void SearchByValue()
 { // This function searches for a sales value in the sales array
 
@@ -184,6 +185,11 @@ void SearchByValue()
         }
     }
     if (!found)
+=======
+void ascendingSort() 
+{
+    for(int i=0 ; i<MAX_SALES ; i++)
+>>>>>>> 22045b68f9f0e98f9833c560918f01098fa46113
     {
         cout << "\nValue " << value << " was NOT found in any day.\n";
     }
@@ -209,12 +215,70 @@ void sortAscending()
         }
     }
 
+    
+
     cout << "Sorted sales (ascending):\n";
     for (int i = 0; i < MAX_SALES; ++i)
     {
         cout << ascendingSalesData[i].dayName << "\t|   " << ascendingSalesData[i].sales << "\n";
     }
     cout << "\n";
+}
+
+void descendingSort()
+{
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sortsales[i] = sales[i];
+    }
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sortDays[i] = days[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if (sortsales[j] < sortsales[j+1])
+            {
+                double tempVal = sortsales[j];
+                sortsales[j] = sortsales[j+1];
+                sortsales[j+1] = tempVal;
+
+               
+                string tempDay = sortDays[j];
+                sortDays[j] = sortDays[j+1];
+                sortDays[j+1] = tempDay;
+            }
+        }
+    }
+
+     cout << "Sorted sales (Descending):\n";
+    for (int i = 0; i < MAX_SALES; ++i) {
+        cout << sortDays[i] << "\t|   " << sortsales[i] << "\n";
+    }
+    cout << "\n";
+
+}
+
+void SortingOptions()
+{
+
+int numberChoice;
+
+  cout<<"Enter 1 for ascending sort or 2 for descending sort: \n";
+  cin>>numberChoice;
+
+  if(numberChoice == 1){
+    ascendingSort();
+  }
+  else if(numberChoice == 2){
+    descendingSort();
+  }
+  else
+    cout<<"The entered value is not acceptable.\n";
+ 
 }
 
 void showHelp()
@@ -232,7 +296,7 @@ void showHelp()
     cout << "5. Show highest sales day - Find the day with the most sales\n";
     cout << "6. Show lowest sales day - Find the day with the least sales\n";
     cout << "7. Search for a sales value - Look for a specific sales amount\n";
-    cout << "8. Sort sales - Arrange sales data in order ascending\n";
+    cout << "8. Sort sales - Arrange sales data in order (ascending/descending)\n";
     cout << "9. Save data to file - Store your sales data in a file\n";
     cout << "10. Help - Show this help information\n";
     cout << "11. Exit program - Close the program\n\n";
@@ -336,7 +400,7 @@ int main()
             break;
         case 8:
             cout << "\nYou chose to sort sales.\n\n";
-            sortAscending();
+            SortingOptions();
             break;
         case 9:
             cout << "\nYou chose to save data to file.\n\n";
