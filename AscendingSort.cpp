@@ -7,7 +7,7 @@ double sortsales[MAX_SALES];
 string days[MAX_SALES] = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
 string sortDays[MAX_SALES];
 
-void sortArray()
+void AscendingSort()
 {
     for (int i = 0; i < MAX_SALES; ++i)
     {
