@@ -164,70 +164,61 @@ int search_day()
     return index;
 }
 
-void ascendingSort() 
+void ascendingSort() 
 {
-    for(int i=0 ; i<MAX_SALES ; i++)
-    {
-         ascendingSalesData[i] = salesData[i];
-    }
+    for(int i=0 ; i<MAX_SALES ; i++)
+    {
+         ascendingSalesData[i] = salesData[i];
+    }
 
-    for (int i = 0; i < MAX_SALES - 1; ++i)
-    {
-        for (int j = 0; j < MAX_SALES - i - 1; ++j)
-        {
-            if ( ascendingSalesData[j].sales >  ascendingSalesData[j + 1].sales)
-            {
-                DailySales temp =  ascendingSalesData[j];
-                 ascendingSalesData[j] =  ascendingSalesData[j + 1];
-                 ascendingSalesData[j + 1] = temp;
-            }
-        }
-    }
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if ( ascendingSalesData[j].sales >  ascendingSalesData[j + 1].sales)
+            {
+                DailySales temp =  ascendingSalesData[j];
+                 ascendingSalesData[j] =  ascendingSalesData[j + 1];
+                 ascendingSalesData[j + 1] = temp;
+            }
+        }
+    }
 
-    
+    
 
-    cout << "Sorted sales (ascending):\n";
-    for (int i = 0; i < MAX_SALES; ++i)
-    {
-        cout <<  ascendingSalesData[i].dayName << "\t|   " <<  ascendingSalesData[i].sales << "\n";
-    }
-    cout << "\n";
+    cout << "Sorted sales (ascending):\n";
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        cout <<  ascendingSalesData[i].dayName << "\t|   " <<  ascendingSalesData[i].sales << "\n";
+    }
+    cout << "\n";
 }
 
 void descendingSort()
 {
     for (int i = 0; i < MAX_SALES; ++i)
-    {
-        sortsales[i] = sales[i];
-    }
-    for (int i = 0; i < MAX_SALES; ++i)
-    {
-        sortDays[i] = days[i];
-    }
+    {
+        descendingSalesData[i] = salesData[i];
+    }
 
-    for (int i = 0; i < MAX_SALES - 1; ++i)
-    {
-        for (int j = 0; j < MAX_SALES - i - 1; ++j)
-        {
-            if (sortsales[j] < sortsales[j+1])
-            {
-                double tempVal = sortsales[j];
-                sortsales[j] = sortsales[j+1];
-                sortsales[j+1] = tempVal;
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if (descendingSalesData[j].sales < descendingSalesData[j+1].sales)
+            {
+                DailySales temp = descendingSalesData[j];
+                descendingSalesData[j] = descendingSalesData[j+1];
+                descendingSalesData[j+1] = temp;
+            }
+        }
+    }
 
-               
-                string tempDay = sortDays[j];
-                sortDays[j] = sortDays[j+1];
-                sortDays[j+1] = tempDay;
-            }
-        }
-    }
-
-     cout << "Sorted sales (Descending):\n";
-    for (int i = 0; i < MAX_SALES; ++i) {
-        cout << sortDays[i] << "\t|   " << sortsales[i] << "\n";
-    }
-    cout << "\n";
+     cout << "Sorted sales (Descending):\n";
+    for (int i = 0; i < MAX_SALES; ++i) {
+        cout << descendingSalesData[i].dayName << "\t|   " << descendingSalesData[i].sales << "\n";
+    }
+    cout << "\n";
 
 }
 
