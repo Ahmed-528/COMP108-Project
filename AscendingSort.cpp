@@ -1,6 +1,12 @@
 #include <iostream>
 using namespace std;
 
+struct DailySales
+{
+    string dayName;
+    double sales;
+};
+
 const int MAX_SALES = 7;
 double sales[MAX_SALES];
 double sortsales[MAX_SALES];
