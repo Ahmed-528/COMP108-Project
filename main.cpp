@@ -41,7 +41,7 @@ void setupData()
     }
 }
 
-void menu() // This function displays the menu.
+void menu() 
 {
     cout << "\033[94m";
     cout << "===================================" << endl;
@@ -62,7 +62,7 @@ void menu() // This function displays the menu.
     cout << "\033[0m";
 }
 
-void inputSales() // This function requires the user to add values.
+void inputSales() 
 {
 
     for (int i = 0; i < MAX_SALES; i++)
@@ -74,7 +74,7 @@ void inputSales() // This function requires the user to add values.
     cout << "\nSales data stored in the array successfully.\n\n\n";
 }
 
-void displayArray() // This function displays the input values.
+void displayArray() 
 {
     int i;
     for (i = 0; i < MAX_SALES; i++)
@@ -83,7 +83,7 @@ void displayArray() // This function displays the input values.
     }
 }
 
-double sum( int count ) // This function is to calculate the total sales of the week.
+double sum( int count ) 
 {
     double sum = 0;
 
@@ -97,7 +97,7 @@ double sum( int count ) // This function is to calculate the total sales of the 
     return sum;
 }
 
-void average(double &avg) // This function is to calculate the average of the week.
+void average(double &avg) 
 {
 
     double sum = 0;
@@ -111,7 +111,7 @@ void average(double &avg) // This function is to calculate the average of the we
     cout << "\n\033[33mThe average of the sales is:\033[0m " << avg << "\n\n\n";
 }
 
-int find_max_sales() // This function finds the highest sales day.
+int find_max_sales() 
 {
     int maxIndex = 0;
 
@@ -128,7 +128,7 @@ int find_max_sales() // This function finds the highest sales day.
     return maxIndex;
 }
 
-int find_lowest_sales() // This function finds the lowest sales day.
+int find_lowest_sales() 
 {
     int lowestIndex = 0;
 
@@ -145,7 +145,7 @@ int find_lowest_sales() // This function finds the lowest sales day.
     return lowestIndex;
 }
 
-int search_day() // This function finds the day that the user is searching for.
+int search_day() 
 {
     int day_number;
     cout << "Enter day number (1 - 7): ";
@@ -164,7 +164,7 @@ int search_day() // This function finds the day that the user is searching for.
     return index;
 }
 
-void sortAscending() // This function sorts sales in ascending order.
+void sortAscending() 
 {
     for(int i=0 ; i<MAX_SALES ; i++)
     {
@@ -217,13 +217,36 @@ void showHelp()
     cout << "===================================\n\n";
 }
 
-void resetSales(DailySales *salesPtr)
+void resetAllSales(DailySales *salesPtr)
 {
     for (int i = 0; i < MAX_SALES; i++)
     {
         salesPtr[i].sales = 0.0;
     }
     cout << "All sales Data has been successfully reset to zero.\n\n";
+}
+
+int updateDaySales()
+{
+   int day_number;
+   cout << "Enter the number of the day to update (1 - "<<MAX_SALES<<"): "; 
+   cin >> day_number;
+   
+    if (day_number < 1 || day_number > MAX_SALES)
+    {
+        cout << "\nInvalid day number!\n\n";
+        return -1;
+    }
+
+    int index = day_number - 1;
+
+    cout << "The old sales for "<< salesData[index].dayName<< " is: "<< salesData[index].sales<<endl;
+    cout << "Enter the NEW sales: ";
+    cin >> salesData[index].sales;
+    
+    return 1;
+
+
 }
 
 int main()
@@ -278,13 +301,13 @@ int main()
             break;
         case 10:
             cout << "\nYou chose to reset all sales.\n";
-            resetSales(salesData);
+            resetAllSales(salesData);
             break;
         case 11:
             showHelp();
             break;
         case 12:
-
+            
             cout << "\nExiting program... Goodbye\n\n";
             break;
         default:
