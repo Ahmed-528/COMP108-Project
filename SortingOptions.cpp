@@ -16,6 +16,5 @@ int numberChoice;
   }
   else
     cout<<"The entered value is not acceptable.\n";
-
-  
+ 
 }
