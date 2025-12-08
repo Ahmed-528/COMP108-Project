@@ -164,7 +164,7 @@ int search_day()
     return index;
 }
 
-void sortAscending() 
+void ascendingSort() 
 {
     for(int i=0 ; i<MAX_SALES ; i++)
     {
@@ -183,6 +183,8 @@ void sortAscending()
             }
         }
     }
+
+    
 
     cout << "Sorted sales (ascending):\n";
     for (int i = 0; i < MAX_SALES; ++i)
@@ -294,7 +296,7 @@ int main()
             break;
         case 8:
             cout << "\nYou chose to sort sales.\n\n";
-            sortAscending();
+            ascendingSort();
             break;
         case 9:
             cout << "\nYou chose to save data to file.\n\n";
