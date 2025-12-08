@@ -194,6 +194,43 @@ void ascendingSort()
     cout << "\n";
 }
 
+void descendingSort()
+{
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sortsales[i] = sales[i];
+    }
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sortDays[i] = days[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if (sortsales[j] < sortsales[j+1])
+            {
+                double tempVal = sortsales[j];
+                sortsales[j] = sortsales[j+1];
+                sortsales[j+1] = tempVal;
+
+               
+                string tempDay = sortDays[j];
+                sortDays[j] = sortDays[j+1];
+                sortDays[j+1] = tempDay;
+            }
+        }
+    }
+
+     cout << "Sorted sales (Descending):\n";
+    for (int i = 0; i < MAX_SALES; ++i) {
+        cout << sortDays[i] << "\t|   " << sortsales[i] << "\n";
+    }
+    cout << "\n";
+
+}
+
 void showHelp()
 {
     cout << "\n===================================" << endl;
