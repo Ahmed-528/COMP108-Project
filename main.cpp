@@ -165,7 +165,6 @@ int search_day()
     return index;
 }
 
-<<<<<<< HEAD
 void SearchByValue()
 { // This function searches for a sales value in the sales array
 
@@ -185,17 +184,34 @@ void SearchByValue()
         }
     }
     if (!found)
-=======
-void ascendingSort() 
-{
-    for(int i=0 ; i<MAX_SALES ; i++)
->>>>>>> 22045b68f9f0e98f9833c560918f01098fa46113
     {
         cout << "\nValue " << value << " was NOT found in any day.\n";
     }
 }
 
-void sortAscending()
+void SortingOptions()
+{
+    int numberChoice;
+    cout << "Enter 1 for ascending sort or 2 for descending sort: \n";
+    while (true)
+    {
+        cin >> numberChoice;
+        if (numberChoice == 1)
+        {
+            ascendingSort();
+            break;
+        }
+        else if (numberChoice == 2)
+        {
+            descendingSort();
+            break;
+        }
+        else
+            cout << "The entered value is not acceptable.\n";
+    }
+}
+
+void ascendingSort()
 {
     for (int i = 0; i < MAX_SALES; i++)
     {
@@ -206,7 +222,7 @@ void sortAscending()
     {
         for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if (ascendingSalesData[j].sales > ascendingSalesData[j + 1].sales)
+            if (ascendingSalesData[j].sales < ascendingSalesData[j + 1].sales)
             {
                 DailySales temp = ascendingSalesData[j];
                 ascendingSalesData[j] = ascendingSalesData[j + 1];
@@ -214,8 +230,6 @@ void sortAscending()
             }
         }
     }
-
-    
 
     cout << "Sorted sales (ascending):\n";
     for (int i = 0; i < MAX_SALES; ++i)
@@ -229,56 +243,28 @@ void descendingSort()
 {
     for (int i = 0; i < MAX_SALES; ++i)
     {
-        sortsales[i] = sales[i];
-    }
-    for (int i = 0; i < MAX_SALES; ++i)
-    {
-        sortDays[i] = days[i];
+        descendingSalesData[i] = salesData[i];
     }
 
     for (int i = 0; i < MAX_SALES - 1; ++i)
     {
         for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if (sortsales[j] < sortsales[j+1])
+            if (descendingSalesData[j].sales < descendingSalesData[j + 1].sales)
             {
-                double tempVal = sortsales[j];
-                sortsales[j] = sortsales[j+1];
-                sortsales[j+1] = tempVal;
-
-               
-                string tempDay = sortDays[j];
-                sortDays[j] = sortDays[j+1];
-                sortDays[j+1] = tempDay;
+                DailySales temp = descendingSalesData[j];
+                descendingSalesData[j] = descendingSalesData[j + 1];
+                descendingSalesData[j + 1] = temp;
             }
         }
     }
 
-     cout << "Sorted sales (Descending):\n";
-    for (int i = 0; i < MAX_SALES; ++i) {
-        cout << sortDays[i] << "\t|   " << sortsales[i] << "\n";
+    cout << "Sorted sales (Descending):\n";
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        cout << descendingSalesData[i].dayName << "\t" << descendingSalesData[i].sales << "\n";
     }
     cout << "\n";
-
-}
-
-void SortingOptions()
-{
-
-int numberChoice;
-
-  cout<<"Enter 1 for ascending sort or 2 for descending sort: \n";
-  cin>>numberChoice;
-
-  if(numberChoice == 1){
-    ascendingSort();
-  }
-  else if(numberChoice == 2){
-    descendingSort();
-  }
-  else
-    cout<<"The entered value is not acceptable.\n";
- 
 }
 
 void showHelp()
@@ -287,7 +273,6 @@ void showHelp()
     cout << "\t    HELP SECTION" << endl;
     cout << "===================================" << endl;
     cout << "This program helps you track and manage daily sales data.\n\n";
-
     cout << "MENU OPTIONS EXPLAINED:\n";
     cout << "1. Enter daily sales data - Add new sales figures for different days\n";
     cout << "2. Display all sales - Show all the sales data you have entered\n";
@@ -300,7 +285,6 @@ void showHelp()
     cout << "9. Save data to file - Store your sales data in a file\n";
     cout << "10. Help - Show this help information\n";
     cout << "11. Exit program - Close the program\n\n";
-
     cout << "Simply choose a number from the menu to perform that action.\n";
     cout << "After each action, the menu will appear again until you choose to exit.\n";
     cout << "===================================\n\n";
@@ -332,7 +316,6 @@ int updateDaySales()
     cout << "The old sales for " << salesData[index].dayName << " is: " << salesData[index].sales << endl;
     cout << "Enter the NEW sales: ";
     cin >> salesData[index].sales;
-
     return 1;
 }
 
