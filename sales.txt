@@ -1,47 +1,38 @@
 Sales Data
 ===========
-Day 1: 746
-Day 2: 856
-Day 3: 585
-Day 4: 475
-Day 5: 867
-Day 6: 865
-Day 7: 455
+Day 1	|   475 SAR
+Day 2	|   955 SAR
+Day 3	|   448 SAR
+Day 4	|   395 SAR
+Day 5	|   969 SAR
+Day 6	|   495 SAR
+Day 7	|   394 SAR
 
-The total of the sales for these days is: 4849 SAR
+The total of the sales for these days is: 4131 SAR
 
+The average of the sales is: 590.143 SAR
 
+Highest sales is on Day 5 with amount: 969 SAR
 
-
-The average of the sales is: 692.714 SAR
-
-
-
-Highest sales is on Day 5 with amount: 867 SAR
-
-
-
-Lowest sales is on Day 7 with amount: 455 SAR
-
-
+Lowest sales is on Day 7 with amount: 394 SAR
 
 Sorted sales (ascending):
-Day 5	|   867 SAR
-Day 6	|   865 SAR
-Day 2	|   856 SAR
-Day 1	|   746 SAR
-Day 3	|   585 SAR
-Day 4	|   475 SAR
-Day 7	|   455 SAR
+Day 7	|   394 SAR
+Day 4	|   395 SAR
+Day 3	|   448 SAR
+Day 1	|   475 SAR
+Day 6	|   495 SAR
+Day 2	|   955 SAR
+Day 5	|   969 SAR
 
 
 Sorted sales (Descending):
-Day 7	|   455 SAR
-Day 4	|   475 SAR
-Day 3	|   585 SAR
-Day 1	|   746 SAR
-Day 2	|   856 SAR
-Day 6	|   865 SAR
-Day 5	|   867 SAR
+Day 5	|   969 SAR
+Day 2	|   955 SAR
+Day 6	|   495 SAR
+Day 1	|   475 SAR
+Day 3	|   448 SAR
+Day 4	|   395 SAR
+Day 7	|   394 SAR
 
 
