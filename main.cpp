@@ -41,7 +41,7 @@ void setupData()
     }
 }
 
-void menu()
+void menuSAR()
 {
     cout << "\033[94m";
     cout << "===================================" << endl;
@@ -57,6 +57,28 @@ void menu()
     cout << "8. Update day sales\n";
     cout << "9. Save data to file\n";
     cout << "10. Convert sales to USD\n";
+    cout << "11. Reset all sales\n";
+    cout << "12. Help\n";
+    cout << "13. Exit program\n\n";
+    cout << "\033[0m";
+}
+
+void menuUSD()
+{
+    cout << "\033[94m";
+    cout << "===================================" << endl;
+    cout << "\t Sales Tracker Menu" << endl;
+    cout << "===================================" << endl;
+    cout << "1. Enter daily sales data\n";
+    cout << "2. Display all sales\n";
+    cout << "3. Calculate total sales\n";
+    cout << "4. Calculate average sales\n";
+    cout << "5. Show maximum or minimum sales day\n";
+    cout << "6. Search data (By Day / By sales)\n";
+    cout << "7. Sort sales\n";
+    cout << "8. Update day sales\n";
+    cout << "9. Save data to file\n";
+    cout << "10. Convert sales to SAR\n";
     cout << "11. Reset all sales\n";
     cout << "12. Help\n";
     cout << "13. Exit program\n\n";
@@ -124,7 +146,6 @@ void average(double &avg)
 
     cout << "\n\033[33mThe average of the sales is:\033[0m " << avg << "\n\n\n";
 }
-
 
 int find_max_sales()
 {
@@ -380,7 +401,7 @@ int updateDaySales()
     return 1;
 }
 
-int main()
+int mainSAR()
 {
     int choice;
     double avg, total;
@@ -389,7 +410,7 @@ int main()
 
     do
     {
-        menu();
+        menuSAR();
         cin >> choice;
 
         switch (choice)
@@ -450,6 +471,109 @@ int main()
             break;
         }
     } while (choice != 13);
+
+    return 0;
+}
+
+int mainUSD()
+{
+    int choice;
+    double avg, total;
+
+    setupData();
+
+    do
+    {
+        menuUSD();
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            cout << "\nYou chose to enter sales data.\n\n";
+            inputSales();
+            break;
+        case 2:
+            cout << "\nYou chose to display sales.\n\n";
+            displayArray();
+            cout << "\n\n";
+            break;
+        case 3:
+            cout << "\nYou chose to calculate total sales.\n\n";
+            total = sum(MAX_SALES);
+            break;
+        case 4:
+            cout << "\nYou chose to calculate average sales.\n\n";
+            average(avg);
+            break;
+        case 5:
+            cout << "\nYou chose to show maximum or minimum sales day.\n\n";
+            findOptions();
+            break;
+        case 6:
+            cout << "\nYou chose to Search data.\n\n";
+            searchOptions();
+            break;
+        case 7:
+            cout << "\nYou chose to sort sales.\n\n";
+            SortingOptions();
+            break;
+        case 8:
+            cout << "\nYou chose to update day sales()\n\n";
+            updateDaySales();
+            break;
+        case 9:
+            cout << "\nYou chose to save data to file.\n\n";
+            break;
+        case 10:
+            cout << "\nYou chose to convert sales to SAR\n\n";
+
+            break;
+        case 11:
+            cout << "\nYou chose to reset all sales.\n";
+            resetAllSales(salesData);
+            break;
+        case 12:
+            showHelp();
+            break;
+        case 13:
+
+            cout << "\nExiting program... Goodbye\n\n";
+            break;
+        default:
+            cout << "\nInvalid choice, please try again.\n\n";
+            break;
+        }
+    } while (choice != 13);
+
+    return 0;
+}
+
+int main()
+{
+    char currency;
+
+    cout << "--- Welcome to Sales Tracker System ---\n\n";
+    cout << "Enter 'R' for Saudi Riyal (SAR) or 'D' for US Dollar (USD): ";
+
+    while(true)
+    {
+        cin>> currency;
+        if(currency == 'R' || currency == 'r')
+        {
+            mainSAR();
+            break;
+        }
+        else if(currency == 'D' || currency == 'd')
+        {
+            mainUSD();
+            break;
+        }
+        else
+        {
+            cout<< "Invalid selection. Please choose R or D and try again.\n";
+        }
+    }
 
     return 0;
 }
