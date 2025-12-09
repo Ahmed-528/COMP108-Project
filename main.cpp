@@ -18,6 +18,7 @@ _________________________________________
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 const int MAX_SALES = 7;
@@ -102,7 +103,7 @@ double getValidSale()
     double value;
     cin >> value;
 
-    while (value <= 0 )
+    while (value <= 0)
     {
         cout << "Invalid! Enter a value : ";
         cin >> value;
@@ -127,7 +128,7 @@ void displayArray()
     int i;
     for (i = 0; i < MAX_SALES; i++)
     {
-        cout << salesData[i].dayName << "\t|   " <<  salesData[i].sales <<" " << salesData[i].currency << "\n";
+        cout << salesData[i].dayName << "\t|   " << salesData[i].sales << " " << salesData[i].currency << "\n";
     }
 }
 
@@ -171,7 +172,7 @@ int find_max_sales()
         }
     }
 
-    cout << "\033[32mHighest sales is on " << salesData[maxIndex].dayName << " with amount: " << salesData[maxIndex].sales <<" "<< salesData[maxIndex].currency << "\033[32m\n\n\n";
+    cout << "\033[32mHighest sales is on " << salesData[maxIndex].dayName << " with amount: " << salesData[maxIndex].sales << " " << salesData[maxIndex].currency << "\033[32m\n\n\n";
 
     return maxIndex;
 }
@@ -197,28 +198,27 @@ void findOptions()
 {
     int numberChoice;
     cout << "Enter 1 for Highest sales Day or 2 for Lowest Sales Day: ";
-            while (true)
-            {
-                cin >> numberChoice;
-                cout<< "\n";
-                if (numberChoice == 1)
-                {
-                    find_max_sales();
-                    cout << endl;
-                    break;
-                }
-                else if (numberChoice == 2)
-                {
-                    find_lowest_sales();
-                    cout << endl;
-                    break;
-                }
-                else
-                {
-                    cout << "Invalid selection. Please choose 1 or 2 and try again.\n";
-                }
-            }
-
+    while (true)
+    {
+        cin >> numberChoice;
+        cout << "\n";
+        if (numberChoice == 1)
+        {
+            find_max_sales();
+            cout << endl;
+            break;
+        }
+        else if (numberChoice == 2)
+        {
+            find_lowest_sales();
+            cout << endl;
+            break;
+        }
+        else
+        {
+            cout << "Invalid selection. Please choose 1 or 2 and try again.\n";
+        }
+    }
 }
 
 int searchByDay()
@@ -271,7 +271,7 @@ void searchOptions()
     while (true)
     {
         cin >> numberChoice;
-        cout<< "\n";
+        cout << "\n";
         if (numberChoice == 1)
         {
             searchByDay();
@@ -298,7 +298,7 @@ void ascendingSort()
     {
         for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if (ascendingSalesData[j].sales < ascendingSalesData[j + 1].sales)
+            if (ascendingSalesData[j].sales > ascendingSalesData[j + 1].sales)
             {
                 DailySales temp = ascendingSalesData[j];
                 ascendingSalesData[j] = ascendingSalesData[j + 1];
@@ -326,7 +326,7 @@ void descendingSort()
     {
         for (int j = 0; j < MAX_SALES - i - 1; ++j)
         {
-            if (descendingSalesData[j].sales > descendingSalesData[j + 1].sales)
+            if (descendingSalesData[j].sales < descendingSalesData[j + 1].sales)
             {
                 DailySales temp = descendingSalesData[j];
                 descendingSalesData[j] = descendingSalesData[j + 1];
@@ -338,7 +338,7 @@ void descendingSort()
     cout << "Sorted sales (Descending):\n";
     for (int i = 0; i < MAX_SALES; ++i)
     {
-        cout << descendingSalesData[i].dayName << "\t" << descendingSalesData[i].sales  << " " << salesData[i].currency<< "\n";
+        cout << descendingSalesData[i].dayName << "\t|   " << descendingSalesData[i].sales << " " << salesData[i].currency << "\n";
     }
     cout << "\n";
 }
@@ -350,7 +350,7 @@ void SortingOptions()
     while (true)
     {
         cin >> numberChoice;
-        cout<< "\n";
+        cout << "\n";
         if (numberChoice == 1)
         {
             ascendingSort();
@@ -418,6 +418,272 @@ int updateDaySales()
     return 1;
 }
 
+void saveSalesSAR()
+{
+    int maxIndex = 0 , lowestIndex = 0;
+    double avg , sum = 0;
+    ofstream file("sales.txt");
+
+    if (!file)
+    {
+        cout << "Error opening file!\n";
+        return;
+    }
+
+    file << "Sales Data\n";
+    file << "===========\n";
+
+    for (int i = 0; i < MAX_SALES; i++)
+    {
+        file << salesData[i].dayName << "\t|   " << salesData[i].sales << " " << salesData[i].currency << "\n";
+    }
+
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sum += salesData[i].sales;
+    }
+
+    file << "\nThe total of the sales for these days is: " << sum << " " << salesData[0].currency << "\n";
+
+    avg = sum / MAX_SALES;
+    file << "\nThe average of the sales is: " << avg << " " << salesData[0].currency << "\n";
+
+    for (int i = 1; i < MAX_SALES; i++)
+    {
+        if (salesData[i].sales > salesData[maxIndex].sales)
+        {
+            maxIndex = i;
+        }
+    }
+
+    file << "\nHighest sales is on " << salesData[maxIndex].dayName << " with amount: " << salesData[maxIndex].sales << " " << salesData[maxIndex].currency << "\n";
+
+    for (int i = 1; i < MAX_SALES; i++)
+    {
+        if (salesData[i].sales < salesData[lowestIndex].sales)
+        {
+            lowestIndex = i;
+        }
+    }
+
+    file << "\nLowest sales is on " << salesData[lowestIndex].dayName << " with amount: " << salesData[lowestIndex].sales << " " << salesData[lowestIndex].currency << "\n";
+
+    file << endl;
+    for (int i = 0; i < MAX_SALES; i++)
+    {
+        ascendingSalesData[i] = salesData[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if (ascendingSalesData[j].sales > ascendingSalesData[j + 1].sales)
+            {
+                DailySales temp = ascendingSalesData[j];
+                ascendingSalesData[j] = ascendingSalesData[j + 1];
+                ascendingSalesData[j + 1] = temp;
+            }
+        }
+    }
+
+    file << "Sorted sales (ascending):\n";
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        file << ascendingSalesData[i].dayName << "\t|   " << ascendingSalesData[i].sales << " " << salesData[i].currency << "\n";
+    }
+    file << "\n";
+    file << endl;
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        descendingSalesData[i] = salesData[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if (descendingSalesData[j].sales < descendingSalesData[j + 1].sales)
+            {
+                DailySales temp = descendingSalesData[j];
+                descendingSalesData[j] = descendingSalesData[j + 1];
+                descendingSalesData[j + 1] = temp;
+            }
+        }
+    }
+
+    file << "Sorted sales (Descending):\n";
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        file << descendingSalesData[i].dayName << "\t|   " << descendingSalesData[i].sales << " " << salesData[i].currency << "\n";
+    }
+    file << "\n";
+    file << endl;
+
+    file.close();
+    cout << "Data saved successfully to sales.txt\n\n";
+}
+
+void saveSalesUSD()
+{
+    int maxIndex = 0 , lowestIndex = 0;
+    double avg , sum = 0;;
+    ofstream file("sales.txt");
+
+    if (!file)
+    {
+        cout << "Error opening file!\n";
+        return;
+    }
+
+    file << "Sales Data\n";
+    file << "===========\n";
+
+    for (int i = 0; i < MAX_SALES; i++)
+    {
+        file << salesData[i].dayName << "\t|   " << salesData[i].sales << " " << salesData[i].currency << "\n";
+    }
+
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        sum += salesData[i].sales;
+    }
+
+    file << "\nThe total of the sales for these days is: " << sum << " " << salesData[0].currency << "\n";
+
+    avg = sum / MAX_SALES;
+    file << "\nThe average of the sales is: " << avg << " " << salesData[0].currency << "\n";
+
+    for (int i = 1; i < MAX_SALES; i++)
+    {
+        if (salesData[i].sales > salesData[maxIndex].sales)
+        {
+            maxIndex = i;
+        }
+    }
+
+    file << "\nHighest sales is on " << salesData[maxIndex].dayName << " with amount: " << salesData[maxIndex].sales << " " << salesData[maxIndex].currency << "\n";
+
+    for (int i = 1; i < MAX_SALES; i++)
+    {
+        if (salesData[i].sales < salesData[lowestIndex].sales)
+        {
+            lowestIndex = i;
+        }
+    }
+
+    file << "\nLowest sales is on " << salesData[lowestIndex].dayName << " with amount: " << salesData[lowestIndex].sales << " " << salesData[lowestIndex].currency << "\n";
+
+    file << endl;
+    for (int i = 0; i < MAX_SALES; i++)
+    {
+        ascendingSalesData[i] = salesData[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if (ascendingSalesData[j].sales > ascendingSalesData[j + 1].sales)
+            {
+                DailySales temp = ascendingSalesData[j];
+                ascendingSalesData[j] = ascendingSalesData[j + 1];
+                ascendingSalesData[j + 1] = temp;
+            }
+        }
+    }
+
+    file << "Sorted sales (ascending):\n";
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        file << ascendingSalesData[i].dayName << "\t|   " << ascendingSalesData[i].sales << " " << salesData[i].currency << "\n";
+    }
+    file << "\n";
+    file << endl;
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        descendingSalesData[i] = salesData[i];
+    }
+
+    for (int i = 0; i < MAX_SALES - 1; ++i)
+    {
+        for (int j = 0; j < MAX_SALES - i - 1; ++j)
+        {
+            if (descendingSalesData[j].sales < descendingSalesData[j + 1].sales)
+            {
+                DailySales temp = descendingSalesData[j];
+                descendingSalesData[j] = descendingSalesData[j + 1];
+                descendingSalesData[j + 1] = temp;
+            }
+        }
+    }
+
+    file << "Sorted sales (Descending):\n";
+    for (int i = 0; i < MAX_SALES; ++i)
+    {
+        file << descendingSalesData[i].dayName << "\t|   " << descendingSalesData[i].sales << " " << salesData[i].currency << "\n";
+    }
+    file << "\n";
+    file << endl;
+
+    file.close();
+    cout << "Data saved successfully to sales.txt\n\n";
+}
+
+void exitSAR()
+{
+    char choice;
+    while (true)
+    {
+        cout << "\nYou have unsaved changes!" << endl;
+        cout << "Enter 'y' to exit with saving. Enter 'n' to exit without saving.\n";
+        cin >> choice;
+
+        if (choice == 'y' || choice == 'Y')
+        {
+            saveSalesSAR();
+            cout << "\nExiting program... Goodbye\n\n";
+            break;
+        }
+        else if (choice == 'n' || choice == 'N')
+        {
+            cout << "Exiting without saving." << endl;
+            break;
+        }
+        else
+        {
+            cout << "Invalid input. Please enter 'y' or 'n'." << endl;
+        }
+    }
+}
+
+void exitUSD()
+{
+    char choice;
+    while (true)
+    {
+        cout << "\nYou have unsaved changes!" << endl;
+        cout << "Enter 'y' to exit with saving. Enter 'n' to exit without saving.\n";
+        cin >> choice;
+
+        if (choice == 'y' || choice == 'Y')
+        {
+            saveSalesUSD();
+            cout << "\nExiting program... Goodbye\n\n";
+            break;
+        }
+        else if (choice == 'n' || choice == 'N')
+        {
+            cout << "Exiting without saving." << endl;
+            break;
+        }
+        else
+        {
+            cout << "Invalid input. Please enter 'y' or 'n'." << endl;
+        }
+    }
+}
+
 int mainSAR()
 {
     int choice;
@@ -467,6 +733,7 @@ int mainSAR()
             break;
         case 9:
             cout << "\nYou chose to save data to file.\n\n";
+            saveSalesSAR();
             break;
         case 10:
             cout << "\nYou chose to convert sales to USD\n\n";
@@ -480,8 +747,7 @@ int mainSAR()
             showHelp();
             break;
         case 13:
-
-            cout << "\nExiting program... Goodbye\n\n";
+            exitSAR();
             break;
         default:
             cout << "\nInvalid choice, please try again.\n\n";
@@ -541,6 +807,7 @@ int mainUSD()
             break;
         case 9:
             cout << "\nYou chose to save data to file.\n\n";
+            saveSalesUSD();
             break;
         case 10:
             cout << "\nYou chose to convert sales to SAR\n\n";
@@ -554,8 +821,7 @@ int mainUSD()
             showHelp();
             break;
         case 13:
-
-            cout << "\nExiting program... Goodbye\n\n";
+            exitUSD();
             break;
         default:
             cout << "\nInvalid choice, please try again.\n\n";
@@ -573,22 +839,22 @@ int main()
     cout << "--- Welcome to Sales Tracker System ---\n\n";
     cout << "Enter 'R' for Saudi Riyal (SAR) or 'D' for US Dollar (USD): ";
 
-    while(true)
+    while (true)
     {
-        cin>> currency;
-        if(currency == 'R' || currency == 'r')
+        cin >> currency;
+        if (currency == 'R' || currency == 'r')
         {
             mainSAR();
             break;
         }
-        else if(currency == 'D' || currency == 'd')
+        else if (currency == 'D' || currency == 'd')
         {
             mainUSD();
             break;
         }
         else
         {
-            cout<< "Invalid selection. Please choose R or D and try again.\n";
+            cout << "Invalid selection. Please choose R or D and try again.\n";
         }
     }
 
