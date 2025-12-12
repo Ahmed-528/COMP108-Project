@@ -71,9 +71,10 @@ void menuSAR()
     cout << "8. Update day sales\n";
     cout << "9. Save data to file\n";
     cout << "10. Convert sales to USD\n";
-    cout << "11. Reset all sales\n";
-    cout << "12. Help\n";
-    cout << "13. Exit program\n\n";
+    cout << "11. Generate Full Report (Summary)\n";
+    cout << "12. Reset all sales\n";
+    cout << "13. Help\n";
+    cout << "14. Exit program\n\n";
     cout << "\033[0m";
 }
 
@@ -93,9 +94,10 @@ void menuUSD()
     cout << "8. Update day sales\n";
     cout << "9. Save data to file\n";
     cout << "10. Convert sales to SAR\n";
-    cout << "11. Reset all sales\n";
-    cout << "12. Help\n";
-    cout << "13. Exit program\n\n";
+    cout << "11. Generate Full Report (Summary)\n";
+    cout << "12. Reset all sales\n";
+    cout << "13. Help\n";
+    cout << "14. Exit program\n\n";
     cout << "\033[0m";
 }
 
@@ -967,6 +969,32 @@ void saveSalesUSD()
     cout << "Data saved successfully to sales.txt\n\n";
 }
 
+void SummarySAR() 
+{
+    double avg;
+	displayArraySAR();
+	sumSAR(MAX_SALES);
+	averageSAR(avg);
+	findMaxSalesSAR();
+	findLowestSalesSAR();
+	ascendingSortSAR();
+	descendingSortSAR();
+	convertSARtoUSD();
+}
+
+void SummaryUSD() 
+{
+    double avg;
+	displayArrayUSD();
+	sumUSD(MAX_SALES);
+	averageUSD(avg);
+	findMaxSalesUSD();
+	findLowestSalesUSD();
+	ascendingSortUSD();
+	descendingSortUSD();
+	convertUSDtoSAR();
+}
+
 void exitSAR()
 {
     char choice;
@@ -1073,24 +1101,28 @@ int mainSAR()
             saveSalesSAR();
             break;
         case 10:
-            cout << "\nYou chose to convert sales to USD\n\n";
+            cout << "\nYou chose to convert sales to USD.\n\n";
             convertSARtoUSD();
             break;
         case 11:
+            cout << "\nYou chose to show summary.\n\n";
+            SummarySAR();
+            break;
+        case 12:
             cout << "\nYou chose to reset all sales.\n";
             resetAllSales(salesDataSAR);
             break;
-        case 12:
+        case 13:
             showHelp();
             break;
-        case 13:
+        case 14:
             exitSAR();
             break;
         default:
             cout << "\nInvalid choice, please try again.\n\n";
             break;
         }
-    } while (choice != 13);
+    } while (choice != 14);
 
     return 0;
 }
@@ -1147,24 +1179,28 @@ int mainUSD()
             saveSalesUSD();
             break;
         case 10:
-            cout << "\nYou chose to convert sales to SAR\n\n";
+            cout << "\nYou chose to convert sales to SAR.\n\n";
             convertUSDtoSAR();
             break;
         case 11:
+            cout << "\nYou chose to show summary.\n\n";
+            SummaryUSD();
+            break;
+        case 12:
             cout << "\nYou chose to reset all sales.\n";
             resetAllSales(salesDataUSD);
             break;
-        case 12:
+        case 13:
             showHelp();
             break;
-        case 13:
+        case 14:
             exitUSD();
             break;
         default:
             cout << "\nInvalid choice, please try again.\n\n";
             break;
         }
-    } while (choice != 13);
+    } while (choice != 14);
 
     return 0;
 }
