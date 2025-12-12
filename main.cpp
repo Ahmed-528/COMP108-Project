@@ -102,12 +102,15 @@ void menuUSD()
 double getValidSale()
 {
     double value;
-    cin >> value;
 
-    while (value <= 0)
+    while (!(cin >> value) || value <= 0)
     {
-        cout << "Invalid! Enter a value : ";
-        cin >> value;
+        if (cin.fail())
+        {
+            cout << "Invalid! Enter a value : ";
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
     }
 
     return value;
