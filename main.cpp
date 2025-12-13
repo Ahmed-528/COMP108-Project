@@ -708,6 +708,7 @@ void convertSARtoUSD()
         salesDataUSD[i].sales = salesDataSAR[i].sales / 3.75;
         salesDataUSD[i].currency = "$";
     }
+    cout << "Convert sales to USD\n";
 
     for (int i = 0; i < MAX_SALES; i++)
     {
@@ -723,7 +724,7 @@ void convertUSDtoSAR()
         salesDataSAR[i].sales = salesDataUSD[i].sales * 3.75;
         salesDataSAR[i].currency = "SAR";
     }
-
+    cout << "Convert sales to SAR\n";
     for (int i = 0; i < MAX_SALES; i++)
     {
         cout << salesDataSAR[i].dayName << "\t|   " << salesDataSAR[i].sales << " " << salesDataSAR[i].currency << "\n";
@@ -972,6 +973,8 @@ void saveSalesUSD()
 void SummarySAR() 
 {
     double avg;
+    cout << "Sales Data\n";
+    cout << "===========\n";
 	displayArraySAR();
 	sumSAR(MAX_SALES);
 	averageSAR(avg);
@@ -985,6 +988,8 @@ void SummarySAR()
 void SummaryUSD() 
 {
     double avg;
+    cout << "Sales Data\n";
+    cout << "===========\n";
 	displayArrayUSD();
 	sumUSD(MAX_SALES);
 	averageUSD(avg);
