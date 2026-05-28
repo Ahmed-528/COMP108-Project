@@ -1,45 +1,46 @@
 Sales Data
 ===========
-Day 1	|   796 SAR
-Day 2	|   967 SAR
-Day 3	|   495 SAR
-Day 4	|   968 SAR
-Day 5	|   495 SAR
-Day 6	|   855 SAR
-Day 7	|   495 SAR
+Day 1	|   743 SAR
+Day 2	|   848 SAR
+Day 3	|   394 SAR
+Day 4	|   241 SAR
+Day 5	|   859 SAR
+Day 6	|   957 SAR
+Day 7	|   848 SAR
 
-The total of the sales for these days is: 5071 SAR
+The total of the sales for these days is: 4890 SAR
 
-The average of the sales is: 724.429 SAR
+The average of the sales is: 698.571 SAR
 
-Highest sales is on Day 4 with amount: 968 SAR
+Highest sales is on Day 6 with amount: 957 SAR
 
-Lowest sales is on Day 3 with amount: 495 SAR
+Lowest sales is on Day 4 with amount: 241 SAR
 
 Sorted sales (ascending):
-Day 3	|   495 SAR
-Day 5	|   495 SAR
-Day 7	|   495 SAR
-Day 1	|   796 SAR
-Day 6	|   855 SAR
-Day 2	|   967 SAR
-Day 4	|   968 SAR
+Day 4	|   241 SAR
+Day 3	|   394 SAR
+Day 1	|   743 SAR
+Day 2	|   848 SAR
+Day 7	|   848 SAR
+Day 5	|   859 SAR
+Day 6	|   957 SAR
 
 
 Sorted sales (Descending):
-Day 4	|   968 SAR
-Day 2	|   967 SAR
-Day 6	|   855 SAR
-Day 1	|   796 SAR
-Day 3	|   495 SAR
-Day 5	|   495 SAR
-Day 7	|   495 SAR
+Day 6	|   957 SAR
+Day 5	|   859 SAR
+Day 2	|   848 SAR
+Day 7	|   848 SAR
+Day 1	|   743 SAR
+Day 3	|   394 SAR
+Day 4	|   241 SAR
 
 
-Day 1	|   212.267 $
-Day 2	|   257.867 $
-Day 3	|   132 $
-Day 4	|   258.133 $
-Day 5	|   132 $
-Day 6	|   228 $
-Day 7	|   132 $
+SAR to USD Conversin
+Day 1	|   198.133 $
+Day 2	|   226.133 $
+Day 3	|   105.067 $
+Day 4	|   64.2667 $
+Day 5	|   229.067 $
+Day 6	|   255.2 $
+Day 7	|   226.133 $

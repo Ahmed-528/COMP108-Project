@@ -991,34 +991,34 @@ void saveSalesUSD()
     cout << "Data saved successfully to sales.txt\n\n";
 }
 
-void SummarySAR() 
+void SummarySAR()
 {
     double avg;
     cout << "Sales Data\n";
     cout << "===========\n";
-	displayArraySAR();
-	sumSAR(MAX_SALES);
-	averageSAR(avg);
-	findMaxSalesSAR();
-	findLowestSalesSAR();
-	ascendingSortSAR();
-	descendingSortSAR();
-	convertSARtoUSD();
+    displayArraySAR();
+    sumSAR(MAX_SALES);
+    averageSAR(avg);
+    findMaxSalesSAR();
+    findLowestSalesSAR();
+    ascendingSortSAR();
+    descendingSortSAR();
+    convertSARtoUSD();
 }
 
-void SummaryUSD() 
+void SummaryUSD()
 {
     double avg;
     cout << "Sales Data\n";
     cout << "===========\n";
-	displayArrayUSD();
-	sumUSD(MAX_SALES);
-	averageUSD(avg);
-	findMaxSalesUSD();
-	findLowestSalesUSD();
-	ascendingSortUSD();
-	descendingSortUSD();
-	convertUSDtoSAR();
+    displayArrayUSD();
+    sumUSD(MAX_SALES);
+    averageUSD(avg);
+    findMaxSalesUSD();
+    findLowestSalesUSD();
+    ascendingSortUSD();
+    descendingSortUSD();
+    convertUSDtoSAR();
 }
 
 void exitSAR()
